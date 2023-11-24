@@ -7,17 +7,41 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UISearchResultsUpdating {
 
-    
-    
+    var nameList = [String]()
+
     var exercices = [Exercice]()
+    
+    private var searchController : UISearchController?
+    private var searchResults = [String]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         createExercices()
         
+        // Creamos una tabla alternativa para visualizar los resultados cuando se seleccione la búsqueda
+        let searchResultsController = UITableViewController(style: .plain)
+        searchResultsController.tableView.dataSource = self
+        searchResultsController.tableView.delegate = self
+
+        // Asignamos esta tabla a nuestro controlador de búsqueda
+        self.searchController = UISearchController(searchResultsController: searchResultsController)
+        self.searchController?.searchResultsUpdater = self
+
+        // Especificamos el tamaño de la barra de búsqueda
+        if let frame = self.searchController?.searchBar.frame {
+            self.searchController?.searchBar.frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: 44.0)
+        }
+
+        // La añadimos a la cabecera de la tabla
+        self.tableView.tableHeaderView = self.searchController?.searchBar
+
+        // Esto es para indicar que nuestra vista de tabla de búsqueda se superpondrá a la ya existente
+        self.definesPresentationContext = true
+
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -32,15 +56,32 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return exercices.count
+        let src = self.searchController?.searchResultsController as! UITableViewController
+
+        if tableView == src.tableView {
+            return self.searchResults.count
+        }
+        else {
+            return self.exercices.count
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
-        cell.textLabel!.text = exercices[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath)
 
-        return cell
+          let src = self.searchController?.searchResultsController as! UITableViewController
+          let object : String?
+
+          if tableView == src.tableView {
+              object = self.searchResults[indexPath.row]
+          }
+          else {
+              object = exercices[indexPath.row].name
+          }
+
+          cell.textLabel!.text = object
+          return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
@@ -58,12 +99,36 @@ class TableViewController: UITableViewController {
             }
         }
     }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        // Cogemos el texto introducido en la barra de búsqueda
+        let searchString = self.searchController?.searchBar.text
+
+
+        // Si la cadena de búsqueda es vacía, copiamos en searchResults todos los objetos
+        if searchString == nil || searchString == "" {
+            self.searchResults = self.nameList
+        }
+        // Si no, copiamos en searchResults sólo los que coinciden con el texto de búsqueda
+        else {
+            let searchPredicate = NSPredicate(format: "SELF BEGINSWITH[c] %@", searchString!)
+            let array = (self.nameList as NSArray).filtered(using: searchPredicate)
+            self.searchResults = array as! [String]
+        }
+
+        // Recargamos los datos de la tabla
+        let tvc = self.searchController?.searchResultsController as! UITableViewController
+        tvc.tableView.reloadData()
+
+        // Deseleccionamos la celda de la tabla principal
+        if let selected = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at:selected, animated: false)
+        }
+    }
 
     
     func createExercices()
     {
-
-        
         var name = "Clean & Jerk"
         var imagesName = [String]()
         imagesName.append("CJ1")
@@ -71,7 +136,7 @@ class TableViewController: UITableViewController {
         imagesName.append("CJ3")
         imagesName.append("CJ4")
         imagesName.append("CJ5")
-
+        
         var explanations = [String]()
         explanations.append("Comienza con los pies a la altura de los hombros, los dedos de los pies apuntando ligeramente hacia afuera. El agarre de la barra debe ser un poco más ancho que el ancho de los hombros. Asegúrate de que la espalda esté recta, el pecho hacia arriba y los hombros sobre la barra. Mantén la cabeza en posición neutral.")
         explanations.append("Flexiona las rodillas y baja las caderas: Mantén la espalda recta mientras te agachas para agarrar la barra con ambas manos. Las manos deben estar colocadas justo afuera de las piernas.\n \nLevanta la barra: Mantén el pecho hacia arriba, la espalda recta y extiende las caderas y las rodillas simultáneamente para levantar la barra del suelo. La barra debe permanecer cerca del cuerpo durante este movimiento. \n \nEncoge los hombros: Una vez que la barra pasa las rodillas, encoge los hombros hacia arriba y hacia adelante, llevando la barra hacia los hombros. Los codos deben apuntar hacia afuera para permitir que la barra suba en línea recta.")
@@ -81,6 +146,8 @@ class TableViewController: UITableViewController {
         
         var categories = [Catergory]()
         categories.append(Catergory.barra)
+        
+        nameList.append(name)
         
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
@@ -103,6 +170,8 @@ class TableViewController: UITableViewController {
         categories = [Catergory]()
         categories.append(Catergory.barra)
         
+        nameList.append(name)
+
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
         name = "Burpee"
@@ -120,6 +189,8 @@ class TableViewController: UITableViewController {
         categories.append(Catergory.libre)
         categories.append(Catergory.pesoCorporal)
         
+        nameList.append(name)
+
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
         name = "Box Jump"
@@ -135,6 +206,8 @@ class TableViewController: UITableViewController {
         categories = [Catergory]()
         categories.append(Catergory.libre)
         categories.append(Catergory.pesoCorporal)
+
+        nameList.append(name)
 
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
@@ -152,6 +225,8 @@ class TableViewController: UITableViewController {
         categories.append(Catergory.cardio)
         categories.append(Catergory.pesoCorporal)
         
+        nameList.append(name)
+
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
         name = "Push Press"
@@ -171,6 +246,8 @@ class TableViewController: UITableViewController {
         categories = [Catergory]()
         categories.append(Catergory.barra)
         
+        nameList.append(name)
+
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
         name = "KB Swing"
@@ -194,6 +271,8 @@ class TableViewController: UITableViewController {
         categories = [Catergory]()
         categories.append(Catergory.kettlebell)
         
+        nameList.append(name)
+
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
         name = "Pull up"
@@ -215,6 +294,8 @@ class TableViewController: UITableViewController {
         categories.append(Catergory.libre)
         categories.append(Catergory.pesoCorporal)
         
+        nameList.append(name)
+
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
         name = "Muscle Up"
@@ -232,6 +313,8 @@ class TableViewController: UITableViewController {
         categories.append(Catergory.libre)
         categories.append(Catergory.pesoCorporal)
         
+        nameList.append(name)
+
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
         name = "Turkish Get Up"
@@ -260,6 +343,8 @@ class TableViewController: UITableViewController {
         categories = [Catergory]()
         categories.append(Catergory.kettlebell)
         
+        nameList.append(name)
+
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
         name = "Handstand Push Up"
@@ -279,6 +364,8 @@ class TableViewController: UITableViewController {
         categories = [Catergory]()
         categories.append(Catergory.kettlebell)
         
+        nameList.append(name)
+        
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
         
         name = "Back Squat"
@@ -297,6 +384,8 @@ class TableViewController: UITableViewController {
         categories = [Catergory]()
         categories.append(Catergory.kettlebell)
         
+        nameList.append(name)
+
         exercices.append(Exercice(ex_name: name, ex_images: imagesName, ex_explanations: explanations, ex_categories: categories))
     }
     

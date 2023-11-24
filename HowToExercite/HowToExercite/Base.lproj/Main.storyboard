@@ -15,15 +15,26 @@
                     <view key="view" contentMode="scaleToFill" id="LW3-0i-yJa">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logoExercitarte" translatesAutoresizingMaskIntoConstraints="NO" id="WH1-WE-jEu">
+                                <rect key="frame" x="20" y="227" width="390" height="479"/>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="p3t-nR-PHm"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WH1-WE-jEu" firstAttribute="centerY" secondItem="LW3-0i-yJa" secondAttribute="centerY" id="Cl5-eR-arP"/>
+                            <constraint firstItem="WH1-WE-jEu" firstAttribute="leading" secondItem="LW3-0i-yJa" secondAttribute="leadingMargin" id="Ih6-Ho-2sK"/>
+                            <constraint firstItem="WH1-WE-jEu" firstAttribute="trailing" secondItem="LW3-0i-yJa" secondAttribute="trailingMargin" id="Tmv-0x-hkx"/>
+                            <constraint firstItem="WH1-WE-jEu" firstAttribute="top" secondItem="p3t-nR-PHm" secondAttribute="top" constant="124" id="dFc-By-xi7"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHd-1U-ffe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1190.2325581395348" y="49.570815450643778"/>
+            <point key="canvasLocation" x="-1190.2325581395348" y="42.489270386266099"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Ejercicios-->
         <scene sceneID="WVm-tD-0Ld">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="NCk-vK-d3P" customClass="TableViewController" customModule="HowToExercite" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,7 +43,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="ZZS-xU-DxI">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="celda" id="ZZS-xU-DxI">
                                 <rect key="frame" x="0.0" y="50" width="430" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZZS-xU-DxI" id="BFy-ea-kHn">
@@ -46,7 +57,7 @@
                             <outlet property="delegate" destination="NCk-vK-d3P" id="vg6-h6-37O"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="AiE-Zl-zfe"/>
+                    <navigationItem key="navigationItem" title="Ejercicios" id="AiE-Zl-zfe"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c76-oc-dZd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -105,11 +116,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        </variation>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rMz-O4-eCU">
                                         <rect key="frame" x="0.0" y="94.333333333333371" width="330" height="354"/>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="9ag-Af-fOD">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9ag-Af-fOD">
                                         <rect key="frame" x="0.0" y="522.33333333333337" width="330" height="176"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -144,6 +158,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="logoExercitarte" width="512" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
