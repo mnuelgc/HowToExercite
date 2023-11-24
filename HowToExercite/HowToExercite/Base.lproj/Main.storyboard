@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5ni-7Q-ed0">
-    <device id="retina6_72" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -13,20 +14,18 @@
             <objects>
                 <viewController id="hoL-sY-I6y" customClass="SectionViewController" customModule="HowToExercite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LW3-0i-yJa">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logoExercitarte" translatesAutoresizingMaskIntoConstraints="NO" id="WH1-WE-jEu">
-                                <rect key="frame" x="20" y="227" width="390" height="479"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoExercitarte" translatesAutoresizingMaskIntoConstraints="NO" id="WH1-WE-jEu">
+                                <rect key="frame" x="-42" y="207" width="512" height="512"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="p3t-nR-PHm"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="WH1-WE-jEu" firstAttribute="centerY" secondItem="LW3-0i-yJa" secondAttribute="centerY" id="Cl5-eR-arP"/>
-                            <constraint firstItem="WH1-WE-jEu" firstAttribute="leading" secondItem="LW3-0i-yJa" secondAttribute="leadingMargin" id="Ih6-Ho-2sK"/>
-                            <constraint firstItem="WH1-WE-jEu" firstAttribute="trailing" secondItem="LW3-0i-yJa" secondAttribute="trailingMargin" id="Tmv-0x-hkx"/>
-                            <constraint firstItem="WH1-WE-jEu" firstAttribute="top" secondItem="p3t-nR-PHm" secondAttribute="top" constant="124" id="dFc-By-xi7"/>
+                            <constraint firstItem="WH1-WE-jEu" firstAttribute="centerX" secondItem="LW3-0i-yJa" secondAttribute="centerX" id="Y9S-dz-OlZ"/>
+                            <constraint firstItem="WH1-WE-jEu" firstAttribute="centerY" secondItem="LW3-0i-yJa" secondAttribute="centerY" id="vVe-kf-l93"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,15 +38,15 @@
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="NCk-vK-d3P" customClass="TableViewController" customModule="HowToExercite" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Vem-PC-bb7">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="ZZS-xU-DxI">
-                                <rect key="frame" x="0.0" y="50" width="430" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="50" width="428" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZZS-xU-DxI" id="BFy-ea-kHn">
-                                    <rect key="frame" x="0.0" y="0.0" width="430" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -68,7 +67,7 @@
             <objects>
                 <navigationController id="FkI-ak-oUZ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="X1Y-Cj-nci">
-                        <rect key="frame" x="0.0" y="59" width="430" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="428" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -105,14 +104,14 @@
             <objects>
                 <viewController storyboardIdentifier="PageContentViewController" id="t3x-uy-jqy" customClass="ContentViewController" customModule="HowToExercite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D7N-2V-bph">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="74" translatesAutoresizingMaskIntoConstraints="NO" id="N8a-MH-QJv">
-                                <rect key="frame" x="50" y="85" width="330" height="698.33333333333337"/>
+                                <rect key="frame" x="50" y="73" width="328" height="704.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uad-Ne-shn">
-                                        <rect key="frame" x="0.0" y="0.0" width="330" height="20.333333333333332"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="328" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -121,20 +120,21 @@
                                         </variation>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rMz-O4-eCU">
-                                        <rect key="frame" x="0.0" y="94.333333333333371" width="330" height="354"/>
+                                        <rect key="frame" x="0.0" y="94.333333333333371" width="328" height="360"/>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9ag-Af-fOD">
-                                        <rect key="frame" x="0.0" y="522.33333333333337" width="330" height="176"/>
+                                        <rect key="frame" x="0.0" y="528.33333333333337" width="328" height="176"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="176" id="ajV-3N-4kw"/>
                                         </constraints>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
+                                <variation key="heightClass=regular-widthClass=regular" distribution="fillProportionally"/>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="p4K-uE-ijw"/>
