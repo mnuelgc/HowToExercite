@@ -68,7 +68,7 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "celda", for: indexPath)
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
           let src = self.searchController?.searchResultsController as! UITableViewController
           let object : String?
@@ -91,11 +91,27 @@ class TableViewController: UITableViewController, UISearchResultsUpdating {
             // Conexión con el controlador detalle
             
             let sectionViewController = splitViewController!.viewController(for: .secondary) as? SectionViewController
-            //detailViewController?.etiqueta.text = pelicula.titulo
             sectionViewController?.didChangeExercice(with: exercice)
             
-            if !sectionViewController!.isBeingPresented{
+            if !sectionViewController!.isBeingPresented {
                 splitViewController!.showDetailViewController(sectionViewController!, sender: self)
+            }
+        }
+        else {
+            var object : String
+            let sc = self.searchController?.searchResultsController as! UITableViewController
+            object = self.searchResults[(sc.tableView.indexPathForSelectedRow?.row)!]
+            
+            let exercice = self.exercices[nameList.firstIndex(of: object)!]
+            
+            // Conexión con el controlador detalle
+            
+            let sectionViewController = splitViewController!.viewController(for: .secondary) as? SectionViewController
+            sectionViewController?.didChangeExercice(with: exercice)
+            
+            if !sectionViewController!.isBeingPresented {
+                splitViewController!.showDetailViewController(sectionViewController!, sender: self)
+                
             }
         }
     }
